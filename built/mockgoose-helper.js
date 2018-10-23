@@ -3,12 +3,19 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var Debug = require('debug');
 var async_1 = require("async");
 var httpsProxyAgent = require('https-proxy-agent');
-var MockgooseHelper = (function () {
+var MockgooseHelper = /** @class */ (function () {
     function MockgooseHelper(mongoose, mockgoose) {
         this.mongoose = mongoose;
         this.mockgoose = mockgoose;
         this.debug = Debug('MockgooseHelper');
     }
+    MockgooseHelper.prototype.setMongoOptions = function (options) {
+        if (!options)
+            options = {};
+        {
+            this.mockgoose.mongodHelper.mongoBin.mongoDBPrebuilt.mongoDBDownload.options = options;
+        }
+    };
     MockgooseHelper.prototype.setDbVersion = function (version) {
         {
             this.mockgoose.mongodHelper.mongoBin.mongoDBPrebuilt.mongoDBDownload.options.version = version;
@@ -18,6 +25,11 @@ var MockgooseHelper = (function () {
         this.mockgoose.mongodHelper.mongoBin.mongoDBPrebuilt.mongoDBDownload.options.http = {
             agent: new httpsProxyAgent(proxy)
         };
+    };
+    MockgooseHelper.prototype.setDownloadCenter = function (downloadCenter) {
+        {
+            this.mockgoose.mongodHelper.mongoBin.mongoDBPrebuilt.mongoDBDownload.options.downloadCenter = downloadCenter;
+        }
     };
     MockgooseHelper.prototype.reset = function () {
         var _this = this;
@@ -54,4 +66,4 @@ var MockgooseHelper = (function () {
     return MockgooseHelper;
 }());
 exports.MockgooseHelper = MockgooseHelper;
-//# sourceMappingURL=/Users/winfinit/workspace/personal/Mockgoose/mockgoose-helper.js.map
+//# sourceMappingURL=../src/mockgoose-helper.js.map
