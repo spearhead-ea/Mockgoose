@@ -13,7 +13,3 @@ mockgoose.prepareStorage().then(() => {
 	  console.log('Mongoose open');
 	}); 
 });
-//var Mockgoose = require('./Mockgoose')(mongoose).then(function() {
-	
-
-//});

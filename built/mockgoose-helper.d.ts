@@ -3,8 +3,13 @@ export declare class MockgooseHelper {
     mockgoose: any;
     debug: any;
     constructor(mongoose: any, mockgoose: any);
+    setMongoOptions(options: {
+        version?: string;
+        downloadCenter?: string;
+    }): void;
     setDbVersion(version: string): void;
     setProxy(proxy: string): void;
+    setDownloadCenter(downloadCenter: string): void;
     reset(): Promise<void>;
     isMocked(): boolean;
 }
